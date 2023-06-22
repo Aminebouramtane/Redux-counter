@@ -1,23 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import { DECREMENT, INCREMENT } from './Redux/Actions/Type';
+import { useDispatch, useSelector } from 'react-redux';
 
 function App() {
+
+  const the_value = useSelector(state => state.value);
+  const dispatch = useDispatch();
+
+  const incremant = () => {
+    dispatch({
+      type : INCREMENT
+    });
+  }
+
+  const decremant = () => {
+    dispatch({
+      type : DECREMENT
+    });
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='app'>
+      <div className="">
+        <button onClick={incremant} >+</button>
+        <div className="">
+          the value is { the_value }
+        </div>
+        <button onClick={decremant} >-</button>
+      </div>
     </div>
   );
 }
